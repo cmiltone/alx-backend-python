@@ -5,10 +5,10 @@ input_list of floats as argument and returns their sum as a float.
 """
 
 
-def sum_list(arr: list[float]) -> float:
-    """returns string representation of a float value"""
+def sum_list(input_list: list[float]) -> float:
+    """returns summation of a list of floats"""
     summation = 0
 
-    for a in arr:
+    for a in input_list:
         summation += a
     return summation
