@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""module annotates function"""
+"""module annotates function
+Augment the following code with
+the correct duck-typed annotations:"""
 from typing import Any, Sequence, Union
 
 List = Sequence[Any]
