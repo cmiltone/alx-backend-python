@@ -14,5 +14,5 @@ Num = Union[str, float]
 
 def to_kv(k: str, v: Arg) -> Tuple[Num]:
     """returns tuple"""
-    
+
     return (k, v * v)
