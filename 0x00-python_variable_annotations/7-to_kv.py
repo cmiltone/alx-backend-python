@@ -9,10 +9,9 @@ should be annotated as a float.
 from typing import Tuple, Union
 
 Arg = Union[int, float]
-Num = Union[str, float]
 
 
-def to_kv(k: str, v: Arg) -> Tuple[Num]:
+def to_kv(k: str, v: Arg) -> Tuple[str, float]:
     """returns tuple"""
 
     return (k, v * v)
