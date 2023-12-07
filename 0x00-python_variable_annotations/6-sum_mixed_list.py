@@ -9,7 +9,7 @@ Num = Union[int, float]
 
 
 def sum_mixed_list(input_list: List[Num]) -> float:
-    """returns summation of a list of floats"""
+    """returns summation of a list of floats and integers"""
     summation = 0
 
     for a in input_list:
