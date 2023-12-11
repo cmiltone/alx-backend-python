@@ -9,8 +9,8 @@ from random import randint
 from time import sleep
 
 
-async def wait_random(max_delay = 10):
+async def wait_random(max_delay=10):
     """
-    async function 
+    async function
     """
     await sleep(randint(0, max_delay))
