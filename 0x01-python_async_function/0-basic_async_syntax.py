@@ -11,6 +11,8 @@ from time import sleep
 
 async def wait_random(max_delay=10):
     """
-    async function
+    async coroutine that accepts an integer
     """
-    await sleep(randint(0, max_delay))
+    sleep(randint(0, max_delay))
+
+    return max_delay
