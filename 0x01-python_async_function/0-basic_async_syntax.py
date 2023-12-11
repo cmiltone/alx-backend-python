@@ -13,7 +13,7 @@ async def wait_random(max_delay: int = 10) -> float:
     """
     async coroutine that accepts an integer
     """
-    wait = random() * max_delay
-    await sleep(wait)
+    max_wait = random() * max_delay
+    await sleep(max_wait)
 
-    return wait
+    return max_wait
