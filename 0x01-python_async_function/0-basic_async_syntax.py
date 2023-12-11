@@ -9,7 +9,7 @@ from random import randint
 from time import sleep
 
 
-async def wait_random(max_delay=10):
+async def wait_random(max_delay: int=10) -> float:
     """
     async coroutine that accepts an integer
     """
