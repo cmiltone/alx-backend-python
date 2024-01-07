@@ -48,3 +48,27 @@ class TestGithubOrgClient(TestCase):
         mocked_fxn.assert_called_once_with(
             "https://api.github.com/orgs/{}".format(org)
         )
+
+    def test_public_repos_url(self) -> None:
+        """
+        Test case
+        Implement the test_public_repos_url method to unit-test
+        GithubOrgClient._public_repos_url.
+
+        Use patch as a context manager to patch GithubOrgClient.org
+        and make it return a known payload.
+
+        Test that the result of _public_repos_url is the expected one
+        based on the mocked payload.
+        """
+        with patch(
+                "client.GithubOrgClient.org",
+                new_callable=PropertyMock,
+                ) as mock_org:
+            mock_org.return_value = {
+                'repos_url': "https://api.github.com/users/google/repos",
+            }
+            self.assertEqual(
+                GithubOrgClient("google")._public_repos_url,
+                "https://api.github.com/users/google/repos",
+            )
