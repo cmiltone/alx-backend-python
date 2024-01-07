@@ -24,7 +24,6 @@ from utils import (
 )
 
 
-
 class TestAccessNestedMap(TestCase):
     """does unit tests for utils.access_nested_map"""
     @parameterized.expand([
@@ -40,3 +39,23 @@ class TestAccessNestedMap(TestCase):
             ) -> None:
         """test case"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
+
+    @parameterized.expand([
+        ({}, ("a",), KeyError),
+        ({"a": 1}, ("a", "b"), KeyError),
+    ])
+    def test_access_nested_map_exception(
+            self,
+            nested_map: Dict,
+            path: Tuple[str],
+            exception: Exception,
+            ) -> None:
+        """
+        Use the assertRaises context manager to test that a KeyError
+        is raised for the following inputs (use @parameterized.expand):
+
+        nested_map={}, path=("a",)
+        nested_map={"a": 1}, path=("a", "b")
+        """
+        with self.assertRaises(exception):
+            access_nested_map(nested_map, path)
