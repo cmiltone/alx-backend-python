@@ -1,17 +1,6 @@
 #!/usr/bin/env python3
 """
-In this task you will write the first unit test for utils.access_nested_map.
-
-Create a TestAccessNestedMap class that inherits from unittest.TestCase.
-
-Implement the TestAccessNestedMap.test_access_nested_map method
-to test that the method returns what it is supposed to.
-
-Decorate the method with @parameterized.expand to test the function for
-following inputs:
-nested_map={"a": 1}, path=("a",)
-nested_map={"a": {"b": 2}}, path=("a",)
-nested_map={"a": {"b": 2}}, path=("a", "b")
+does unit tests for utils
 """
 from unittest import TestCase
 from typing import Dict, Tuple, Union
@@ -25,7 +14,21 @@ from utils import (
 
 
 class TestAccessNestedMap(TestCase):
-    """does unit tests for utils.access_nested_map"""
+    """
+    In this task you will write the first unit test for
+    utils.access_nested_map.
+
+    Create a TestAccessNestedMap class that inherits from unittest.TestCase.
+
+    Implement the TestAccessNestedMap.test_access_nested_map method
+    to test that the method returns what it is supposed to.
+
+    Decorate the method with @parameterized.expand to test the function for
+    following inputs:
+    nested_map={"a": 1}, path=("a",)
+    nested_map={"a": {"b": 2}}, path=("a",)
+    nested_map={"a": {"b": 2}}, path=("a", "b")
+    """
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
@@ -59,3 +62,34 @@ class TestAccessNestedMap(TestCase):
         """
         with self.assertRaises(exception):
             access_nested_map(nested_map, path)
+
+
+class TestGetJson(TestCase):
+    """
+    Define the TestGetJson(unittest.TestCase) class and implement the
+    TestGetJson.test_get_json method to test that utils.get_json
+    returns the expected result.
+
+    We don't want to make any actual external HTTP calls.
+    Use unittest.mock.patch to patch requests.get.
+    Make sure it returns a Mock object with a json method that
+    returns test_payload which you parametrize alongside the test_url that
+    you will pass to get_json with the following inputs:
+
+    test_url="http://example.com", test_payload={"payload": True}
+    test_url="http://holberton.io", test_payload={"payload": False}
+    """
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
+    ])
+    def test_get_json(
+            self,
+            test_url: str,
+            test_payload: Dict,
+            ) -> None:
+        """Tests case"""
+        attributes = {'json.return_value': test_payload}
+        with patch("requests.get", return_value=Mock(**attributes)) as req_get:
+            self.assertEqual(get_json(test_url), test_payload)
+            req_get.assert_called_once_with(test_url)
