@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-does unit tests for utils
+does unit tests for utils functions
 """
 from unittest import TestCase
 from typing import Dict, Tuple, Union
